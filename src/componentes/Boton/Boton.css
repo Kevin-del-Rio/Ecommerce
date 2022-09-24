@@ -1,0 +1,18 @@
+.btn{
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-bottom: 2px solid #ff0080;
+    border-radius: 2px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: Roboto, sans-serif;
+    cursor: pointer;
+    color: #303030;
+    transition: all 100ms ease-in-out;
+    background-color: #ff008000;
+}
+.btn:hover{
+    transform: scale(1.1);   
+}

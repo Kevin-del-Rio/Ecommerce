@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul, li, a{
+    text-decoration: none;
+    list-style: none;
+}
+
+body, html{
+background-color: #f3f3f3;
+}

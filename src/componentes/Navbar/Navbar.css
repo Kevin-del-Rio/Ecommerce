@@ -1,0 +1,41 @@
+.centrado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-navbar{
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 7rem;
+    display: flex;    
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f3f3f3;
+    border: none; 
+    border-bottom: 1px solid #ff0080;  
+    /* box-shadow:  0px 1px 10px -2px #ff0080; */
+}
+.navbar-menu{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contenedor-logo{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background-color: #ff0080;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+} 
+
+.logo{
+    width: 98%;
+}
+ .contenedor-logo:hover{
+    transform: scale(1.1);
+}
