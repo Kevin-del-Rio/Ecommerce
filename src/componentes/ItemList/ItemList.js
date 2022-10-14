@@ -1,13 +1,12 @@
-import './ItemList.css';
-import Item from '../Item/Item';
+import './ItemList.css'
+import Item from '../Item/Item'
 
-function ItemList({ products }){
+const ItemList = ({ products, setPage }) => {
     return(
-      <div>
-        {products.map(prod => <Item key={prod.id} img={prod.img} name={prod.name} des={prod.descripcion} price= {prod.price}/>)}
-      
-      </div>
+        <div className='contenedor-lista-producto'>
+            {products.map(prod => <Item key={prod.id} {...prod} setPage={setPage} />)}           
+        </div>    
     )
 }
 
-export default ItemList;
+export default ItemList

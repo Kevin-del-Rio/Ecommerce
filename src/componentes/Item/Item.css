@@ -1,0 +1,27 @@
+.contenedor-card{    
+    border: 2px solid red;
+    width:500px;   
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 30;
+}
+
+.img-card{
+    width: 100%;
+    filter: drop-shadow(5px 4px 1px #000);
+    transition: all .3s ease-in-out;
+}
+.img-card:hover{
+    transform: scale(1.1);
+}
+.precio-card{
+    font-weight: 600;
+}
+.link{
+    text-decoration: none;
+    color: #303030;
+    font-weight: 600;
+}

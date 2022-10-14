@@ -3,25 +3,32 @@ import './Navbar.css';
 import Carrito from '../CartWidget/CartWidget';
 import Logo from './assets/logo1.png';
 import Boton from '../Boton/Boton';
+import { NavLink } from 'react-router-dom';
 
 
 function Navbar( children ) {
     return (
         <nav className='contenedor-navbar'>
-            <div className='contenedor-logo centrado'>
-                <img className='logo'
-                    src={Logo}
-                    alt='Logo de La Cuadreria' />
-            </div>
+            <NavLink to='/'>
+                <div className='contenedor-logo centrado'>
+                    <img className='logo'
+                        src={Logo}
+                        alt='Logo de La Cuadreria' />
+                </div>
+            </NavLink>
             <div className='navbar-menu'>
-                <Boton> Categorias </Boton>
-                <Boton> Personalizar  </Boton>
-                <Boton> Contacto </Boton>
+                <NavLink to="/cuadros" ><Boton> Cuadros </Boton> </NavLink>              
+                <NavLink to="/category/series" ><Boton> Series </Boton></NavLink>
+                <NavLink to="/category/musica" ><Boton> Musica </Boton> </NavLink>
+                <NavLink to="/category/anime" ><Boton> Anime </Boton> </NavLink>
+                <NavLink to="/category/futbol" ><Boton> Futbol </Boton> </NavLink>
             </div>
-            <Carrito />            
+            <NavLink to="/carrito" >  <Carrito /> </NavLink>
+           
         </nav>
 
     )
 };
 
 export default Navbar;
+

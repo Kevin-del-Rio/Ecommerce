@@ -1,0 +1,36 @@
+.contenedor-contador{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+    /* background-color: rd; */
+}
+.contenedor-controles{
+    display: flex;
+    justify-content: center;
+
+}
+.Boton {  
+    border-radius: 10px;
+    margin: 5px 10px;
+    width: auto;
+    padding: 12px;
+    font-size: 1.2rem;
+    background-color: #f3f3f3;
+    border:2px solid #ff0080;      
+    cursor: pointer;
+    color: #303030; 
+    transition: all .1s ease-in-out; 
+}
+.Boton:hover{
+    transform: scale(1.05);
+}
+
+.Valor {
+    font-size:1.5rem;
+    padding: 10px;
+    margin: 0;    
+}
+
