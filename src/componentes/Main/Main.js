@@ -8,7 +8,7 @@ const Main = ({ children = 'Empresa' }) => {
             <div className='contenedor-texto'>
                 <p className='texto'>Bienvenidos a</p>
                 <p className='texto titulo'>
-                    <u>{ children }</u>
+                    <u> La cuadreria </u>
                 </p>
             </div>
         </div>

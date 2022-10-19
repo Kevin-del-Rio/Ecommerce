@@ -4,7 +4,7 @@ import Carrito from '../CartWidget/CartWidget';
 import Logo from './assets/logo1.png';
 import Boton from '../Boton/Boton';
 import { NavLink } from 'react-router-dom';
-
+import { useContext } from 'react'
 
 function Navbar( children ) {
     return (

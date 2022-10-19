@@ -1,5 +1,5 @@
 const products = [
-    {id:'1', name:'Bad Bunny', price: 750, category: 'musica', img: '/img/Bad-Bunny-1.png', stock: 5, descripcion: 'Cuadro de Bad Bunny en Lienzo 30 x 30 cm'},
+    {id:'1', name:'Bad Bunny', price: 750, category: 'musica', img: '/img/Bad-Bunny-1.png', stock: 0, descripcion: 'Cuadro de Bad Bunny en Lienzo 30 x 30 cm'},
     {id:'2', name:'Madonna', price: 750, category: 'musica', img: '/img/Madona1.png', stock: 100, descripcion: 'Cuadro de Madona en Lienzo 30 x 30 cm'},
     {id:'3', name:'Messi', price: 750, category: 'futbol', img: '/img/Messi-1.png', stock: 100, descripcion: 'Cuandro de Messi en Lienzo 30 x 30 cm'},
     {id:'4', name:'La Casa De Papel', price: 750, category: 'series', img: '/img/La-Casa-De-Papel-1.png', stock: 100, descripcion: 'Cuandro de la casa de papel en Lienzo 30 x 30 cm'},
@@ -13,8 +13,8 @@ const products = [
 export const getProducts = () => {
     return new Promise((resolve) => {
         setTimeout(()=>{
-            resolve(products)
-        },1500)
+            resolve(products.filter(prod => prod.stock > 0))
+        },1000)
 
     })
 };
@@ -25,7 +25,7 @@ export const getProductById = (id) => {
             resolve(products.find(prod => {
                 return prod.id === id
             }))
-        }, 1500)
+        }, 1000)
     })
 }
 
@@ -33,8 +33,8 @@ export const getProductById = (id) => {
 export const getProductsByCategory = (categoryId) => {
     return new Promise (resolve => {
         setTimeout(() => {
-            resolve(products.filter(prod => prod.category === categoryId))
-        }, 1500)
+            resolve(products.filter(prod => prod.category === categoryId ))
+        }, 1000)
     })
 }
 
