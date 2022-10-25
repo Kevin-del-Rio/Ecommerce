@@ -1,10 +1,9 @@
-import React from 'react';
 import './Navbar.css';
 import Carrito from '../CartWidget/CartWidget';
 import Logo from './assets/logo1.png';
 import Boton from '../Boton/Boton';
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react'
+
 
 function Navbar( children ) {
     return (
@@ -17,13 +16,13 @@ function Navbar( children ) {
                 </div>
             </NavLink>
             <div className='navbar-menu'>
-                <NavLink to="/cuadros" ><Boton> Cuadros </Boton> </NavLink>              
-                <NavLink to="/category/series" ><Boton> Series </Boton></NavLink>
-                <NavLink to="/category/musica" ><Boton> Musica </Boton> </NavLink>
-                <NavLink to="/category/anime" ><Boton> Anime </Boton> </NavLink>
-                <NavLink to="/category/futbol" ><Boton> Futbol </Boton> </NavLink>
+                <NavLink to={"/cuadros"} ><Boton> Cuadros </Boton> </NavLink>              
+                <NavLink to={"/category/series"} ><Boton> Series </Boton></NavLink>
+                <NavLink to={"/category/musica"} ><Boton> Musica </Boton> </NavLink>
+                <NavLink to={"/category/anime" }><Boton> Anime </Boton> </NavLink>
+                <NavLink to={"/category/futbol"} ><Boton> Futbol </Boton> </NavLink>
             </div>
-            <NavLink to="/carrito" >  <Carrito /> </NavLink>
+            <NavLink to="/cart" >  <Carrito /> </NavLink>
            
         </nav>
 
