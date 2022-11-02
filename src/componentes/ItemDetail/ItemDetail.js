@@ -8,31 +8,32 @@ import Boton from '../Boton/Boton'
 
 const ItemDetail = ({ id, name, img, category, descripcion, price, stock }) => {
 
-    const { addItem, isInCart } = useContext(CartContext)
+    const { addItem, isInCart, getProductQuantity } = useContext(CartContext)
 
     const manejarAgregar = (quantity) => {
         const productToAdd = {
-       id, name, descripcion, price, quantity
+            id, name, descripcion, price, quantity
         }
         addItem(productToAdd)
-        
+
     }
+    const quantityAdded = getProductQuantity(id)
     return (
         <div className='contenedor-detalle-producto'>
             <div className='contenedor-img-detalle'>
                 <img className='img' src={img} alt={name} />
             </div>
             <div className='contenedor-informacion'>
-                <p className='desc'>{category} </p>
+                <p className='cat'><u>{category}</u> </p>
                 <p className='desc'>{descripcion} </p>
                 <p className='precio'>$ {price} c/u</p>
                 <div>
                     {
-                        !isInCart(id)
-                            ? <ItemCount onAdd={manejarAgregar} key={id} stock={stock} />
-                            : <Link to='/cart'>
-                                <Boton >Ver carrito</Boton>
-                            </Link> 
+                        stock > 0 && !isInCart(id)
+                            ? <ItemCount onAdd={manejarAgregar} stock={stock} />
+                            : !isInCart(id)
+                                ?<h2>No hay stock</h2>
+                                : <Link to='/cart'><Boton >Ver carrito</Boton></Link>
                     }
                 </div>
             </div>

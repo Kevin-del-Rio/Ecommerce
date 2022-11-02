@@ -1,6 +1,6 @@
 import './ItemDetailContainer.css';
 import { useState, useEffect } from 'react';
-import { getProductById } from '../../asyncMock';
+
 import ItemDetail from '../ItemDetail/ItemDetail';
 import { useParams } from 'react-router-dom'
 import Loading from '../Loading/Loading';
@@ -23,13 +23,8 @@ const ItemDetailContainer = () => {
             setProduct(productAdapted)
         }).finally (() => {
             setLoading(false)
-        })
-        
-        // getProductById(productId).then(response => {             
-        //     setProduct(response)          
-        // }).finally(() => {
-        //     setLoading(false)
-        // })
+        })        
+       
        
     }, [productId])
     
@@ -39,7 +34,7 @@ const ItemDetailContainer = () => {
    
     return (
         <div className='contenedor-detalle' >
-            <h1><u>Detalle</u> </h1>
+            <h1><u>Detalle</u></h1>
             <ItemDetail  {...product} />
         </div>
     )

@@ -4,15 +4,20 @@ a{
 }
 
 .Footer{
-    padding: 5rem 0;
+    width: 100%;
+    height: 15rem;
+    /* padding: 2rem 0; */
+
     background-color: #010d23;
-    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
 }
 
 .Footer .Social{
     text-align: center;
-    padding-bottom: 25px;
+    /* padding-bottom: 25px; */
     color: #ffffff;
 }
 
@@ -34,19 +39,15 @@ a{
     opacity: 0.6;   
 }
 
-.Footer ul {
-    margin-top: 0;
-    padding: 0;
+.Footer ul {   
     list-style: none;
     font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 0;
+    line-height: 1.6;   
     text-align: center;
     color: #fdfdfd ;
 }
 
 .Footer ul a{
-    color: inherit;
     text-decoration: none;
     opacity: 0.8;
 }
@@ -60,9 +61,8 @@ a{
     opacity: 1;
 }
 
-.Footer .Copyrigth{
-    margin-top: 15px;
+.Footer .Copyrigth{   
     text-align: center;
-    font-size: 13px;
+    font-size: 1rem;
     color:  #ff0080;
 }

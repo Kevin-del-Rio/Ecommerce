@@ -3,7 +3,8 @@
     position: relative;
     top: 7rem;
     width: 100%;
-    min-height: 95vh;     
+    min-height: 85vh;
+    margin-bottom: 10rem;     
 }
 h1{
     text-align: center;

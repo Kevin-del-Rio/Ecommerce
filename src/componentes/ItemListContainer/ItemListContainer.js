@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 import { getDocs, collection, query, where } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const ItemListContainer = ({ greeting }) => {
     useEffect(() => {
         setLoading(true)
 
-        const collectionRef = categoryId
+        const collectionRef = categoryId          
             ? query(collection(db, 'products'), where('category', '==', categoryId))
             : collection(db, 'products')
 
@@ -25,7 +25,7 @@ const ItemListContainer = ({ greeting }) => {
                 const data = doc.data();
                 return { id: doc.id, ...data }
             })
-            setProducts(productsAdapted)
+            setProducts(productsAdapted)            
         }).catch(error => {
             console.log(error)
         }).finally(() => {

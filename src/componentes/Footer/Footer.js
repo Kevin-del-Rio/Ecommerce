@@ -14,13 +14,13 @@ const Footer = () => {
 
         <ul className='lista'>
           <li>
-            <a href='*'>Home</a>
+            <a href='/'>Home</a>
           </li>
           <li>
             <a href='*'>Contacto</a>
           </li>
           <li>
-            <a href='*'>Cuadros</a>
+            <a href='/category/cuadros'>Cuadros</a>
           </li>         
         </ul>
         <p className='Copyrigth'>        

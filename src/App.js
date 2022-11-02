@@ -7,6 +7,7 @@ import Main from './componentes/Main/Main'
 import Footer from './componentes/Footer/Footer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
+import Checkout from './componentes/Checkout/Checkout';
 
 
 function App() {
@@ -18,10 +19,11 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Main />} />
-            <Route path='/cuadros' element={<ItemListContainer />} />
+            <Route path='/category/cuadros' element={<ItemListContainer />} />
             <Route path='/category/:categoryId' element={<ItemListContainer />} />
             <Route path='/detail/:productId' element={<ItemDetailContainer />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
             <Route path='*' element={<h1 style={{ marginTop: '40vh', textAlign: 'center' }}>404 NOT FOUND</h1>} />
           </Routes>
           <Footer />
