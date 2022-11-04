@@ -8,7 +8,7 @@ import Boton from '../Boton/Boton'
 
 const ItemDetail = ({ id, name, img, category, descripcion, price, stock }) => {
 
-    const { addItem, isInCart, getProductQuantity } = useContext(CartContext)
+    const { addItem, isInCart} = useContext(CartContext)
 
     const manejarAgregar = (quantity) => {
         const productToAdd = {
@@ -17,11 +17,11 @@ const ItemDetail = ({ id, name, img, category, descripcion, price, stock }) => {
         addItem(productToAdd)
 
     }
-    const quantityAdded = getProductQuantity(id)
+    // const quantityAdded = getProductQuantity(id)
     return (
         <div className='contenedor-detalle-producto'>
             <div className='contenedor-img-detalle'>
-                <img className='img' src={img} alt={name} />
+                <img className='img' src={img} alt={name} /> 
             </div>
             <div className='contenedor-informacion'>
                 <p className='cat'><u>{category}</u> </p>
