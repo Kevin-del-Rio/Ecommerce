@@ -11,7 +11,11 @@
     align-items: center;
     margin-bottom:5rem;
 }
-
+h1{
+  text-align: center;
+  padding: 2rem 0;    
+  color: #ff0080;
+}
 
   .form {
     background-color: #010d23;
