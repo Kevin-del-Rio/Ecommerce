@@ -1,7 +1,7 @@
 import './Main.css';
 import img from './assets//muro.jpg'
 
-const Main = ({ children = 'Empresa' }) => {
+const Main = () => {
     return (
         <div className='contenedor-img-main'>
             <img className='img-main' src={img} alt='imagen main La cuadreria'></img>

@@ -1,35 +1,33 @@
 import './ItemDetailContainer.css';
-import { useState, useEffect } from 'react';
-
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { useParams } from 'react-router-dom'
+import { useParams , useNavigate} from 'react-router-dom'
 import Loading from '../Loading/Loading';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase'
+import { getProduct} from '../../services/firebase/firestore/products';
+import { useAsync } from '../../Hooks/useAsync';
+import Swal from 'sweetalert2';
 
-const ItemDetailContainer = () => {
-    const [product, setProduct] = useState()
-    const [loading, setLoading] = useState(true)
-    
+const ItemDetailContainer = () => {   
     const { productId } = useParams();
+    const navigate = useNavigate() 
 
-    useEffect(() => { 
-        const docRef = doc(db, 'products', productId )
-        
-        getDoc(docRef).then( response =>{
-            console.log(response)
-            const data = response.data();
-            const productAdapted = { id : response.id, ...data }
-            setProduct(productAdapted)
-        }).finally (() => {
-            setLoading(false)
-        })        
-       
-       
-    }, [productId])
+    const getProductWithId = () => getProduct(productId)
+
+    const { data: product, error, loading } = useAsync(getProductWithId, [productId])   
+  
     
     if (loading) {
         return <Loading />
+    }
+    
+    if(error){
+        return(
+            Swal.fire({
+                icon: 'error',
+                title: 'Error Inesperado',
+                text: 'Regreso al inicio',
+                footer: navigate('/')
+              })
+        )
     }
    
     return (
@@ -41,3 +39,5 @@ const ItemDetailContainer = () => {
 };
 
 export default ItemDetailContainer;
+
+

@@ -1,13 +1,12 @@
 import './Cart.css'
-import { useContext } from 'react'
-import { CartContext } from '../../context/CartContext'
 import ItemCart from '../ItemCart/ItemCart'
 import { Link } from 'react-router-dom'
 import Boton from '../Boton/Boton'
+import { useCart } from '../../context/CartContext'
 
 const Cart = () => {
 
-    const { cart, total, clearCart } = useContext(CartContext)
+    const { cart, total, clearCart } = useCart()
 
     return (
         <div className='Cart'>

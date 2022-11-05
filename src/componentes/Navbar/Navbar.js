@@ -9,11 +9,9 @@ import { db } from '../../services/firebase'
 
 
 const Navbar = () => {
-
   const [categories, setCategories] = useState([])
+
   useEffect(() => {
-
-
     const collectionRef = query(collection(db, 'categories'), orderBy('order'))
     getDocs(collectionRef).then(response => {
       const categoriesAdapted = response.docs.map(doc => {
@@ -40,13 +38,11 @@ const Navbar = () => {
             <NavLink key={cat.id} to={`/category/${cat.slug}`} ><Boton> {cat.label} </Boton> </NavLink>
           ))
         }
-
       </div>
   
       <NavLink to="/cart" >  <Carrito /> </NavLink>
 
     </nav>
-
   )
 };
 

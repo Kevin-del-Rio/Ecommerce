@@ -1,7 +1,7 @@
 import './Checkout.css';
 import Swal from 'sweetalert2'
-import { useContext, useState } from 'react';
-import { CartContext } from '../../context/CartContext'
+import {  useState } from 'react';
+import { useCart } from '../../context/CartContext';
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../services/firebase/index'
 import Loading from '../Loading/Loading';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
 
-  const { cart, total, clearCart } = useContext(CartContext)
+  const { cart, total, clearCart } = useCart()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState()
@@ -74,7 +74,7 @@ const Checkout = () => {
           }
         })
 
-        Toast.fire({ 
+        Toast.fire({
           icon: 'success',
           title: ` Orden Procesada Correctamente`
         })
@@ -111,7 +111,6 @@ const Checkout = () => {
         text: 'Seguir Comprando',
         footer: navigate('/')
       })
-      console.log(error)
     } finally {
       setLoading(false)
       navigate('/')

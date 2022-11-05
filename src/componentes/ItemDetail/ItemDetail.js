@@ -1,23 +1,21 @@
 import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext'
+import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import Boton from '../Boton/Boton'
 
 
 const ItemDetail = ({ id, name, img, category, descripcion, price, stock }) => {
 
-    const { addItem, isInCart} = useContext(CartContext)
+    const { addItem, isInCart} = useCart()
 
     const manejarAgregar = (quantity) => {
         const productToAdd = {
             id, name, descripcion, price, quantity
         }
         addItem(productToAdd)
-
     }
-    // const quantityAdded = getProductQuantity(id)
+
     return (
         <div className='contenedor-detalle-producto'>
             <div className='contenedor-img-detalle'>

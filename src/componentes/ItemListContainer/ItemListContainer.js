@@ -1,40 +1,31 @@
 import './ItemListContainer.css';
-import { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Loading from '../Loading/Loading';
-import { getDocs, collection, query, where } from 'firebase/firestore'
-import { db } from '../../services/firebase'
+import { getProducts } from '../../services/firebase/firestore/products';
+import { useAsync } from '../../Hooks/useAsync';
+import Swal from 'sweetalert2';
 
 const ItemListContainer = () => {
-
-    const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(true)
-
     const { categoryId } = useParams()
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        setLoading(true)
-
-        const collectionRef = categoryId          
-            ? query(collection(db, 'products'), where('category', '==', categoryId))
-            : collection(db, 'products')
-
-        getDocs(collectionRef).then(response => {
-            const productsAdapted = response.docs.map(doc => {
-                const data = doc.data();
-                return { id: doc.id, ...data }
-            })
-            setProducts(productsAdapted)            
-        }).catch(error => {
-            console.log(error)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [categoryId])
+    const getProductsWithCategory = () => getProducts(categoryId)
+    const { data: products, error, loading } = useAsync(getProductsWithCategory, [categoryId])
 
     if (loading) {
         return <Loading />
+    }
+
+    if(error){
+        return(
+            Swal.fire({
+                icon: 'error',
+                title: 'Error Inesperado',
+                text: 'Regreso al inicio',
+                footer: navigate('/')
+              })
+        )
     }
 
     return (

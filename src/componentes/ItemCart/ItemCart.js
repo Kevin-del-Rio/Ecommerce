@@ -1,12 +1,11 @@
 import React from 'react'
 import '../ItemCart/ItemCart.css'
-import { useContext } from 'react'
-import { CartContext } from '../../context/CartContext'
 import { BiTrash} from "react-icons/bi";
+import { useCart } from '../../context/CartContext';
 
 const ItemCart = ({ descripcion, quantity, price, id }) => {
 
-    const { removeItem } = useContext(CartContext)
+    const { removeItem } = useCart()
     return (
         <div className='Cart-Item'>
             <p>{descripcion}</p>

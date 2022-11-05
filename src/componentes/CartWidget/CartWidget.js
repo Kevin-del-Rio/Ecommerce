@@ -1,12 +1,12 @@
 import './CartWidget.css';
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
+
 
 
 const CartWidget = () => {
     
-    const { totalQuantity} = useContext(CartContext) 
+    const { totalQuantity} = useCart()
     return (
         <div className='contenedor-carrito centrado'>
             <p className='cantidad-carrito'>{totalQuantity}</p>
