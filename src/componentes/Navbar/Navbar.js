@@ -42,6 +42,7 @@ const Navbar = () => {
         }
 
       </div>
+  
       <NavLink to="/cart" >  <Carrito /> </NavLink>
 
     </nav>
