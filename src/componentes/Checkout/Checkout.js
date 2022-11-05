@@ -74,7 +74,7 @@ const Checkout = () => {
           }
         })
 
-        Toast.fire({
+        Toast.fire({ 
           icon: 'success',
           title: ` Orden Procesada Correctamente`
         })
