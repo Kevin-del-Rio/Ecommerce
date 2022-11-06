@@ -36,4 +36,4 @@ $ npm start
 
 ## Test App 
 
-[Deploy]https://ecommerce-nine-rho.vercel.app/
+[Deploy]https://ecommerce-kdelrio21.vercel.app/
