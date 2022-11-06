@@ -3,9 +3,12 @@ import '../ItemCart/ItemCart.css'
 import { BiTrash} from "react-icons/bi";
 import { useCart } from '../../context/CartContext';
 
-const ItemCart = ({ descripcion, quantity, price, id }) => {
+const ItemCart = ({ descripcion, quantity, price, id, stock }) => {
 
     const { removeItem } = useCart()
+
+    
+
     return (
         <div className='Cart-Item'>
             <p>{descripcion}</p>

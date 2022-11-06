@@ -7,7 +7,6 @@ import { useCart } from '../../context/CartContext'
 const Cart = () => {
 
     const { cart, total, clearCart } = useCart()
-
     return (
         <div className='Cart'>
             <h1><u>Carrito de compras</u></h1>

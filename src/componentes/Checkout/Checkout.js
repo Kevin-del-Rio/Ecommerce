@@ -1,6 +1,6 @@
 import './Checkout.css';
 import Swal from 'sweetalert2'
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../services/firebase/index'
@@ -53,7 +53,7 @@ const Checkout = () => {
         }
       })
 
-      if (outOfStock.length === 0) {
+      if (outOfStock.length === 0 && name && lastName && phone && mail) {
         await batch.commit()
 
         const orderRef = collection(db, 'orders')
@@ -73,7 +73,6 @@ const Checkout = () => {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
         })
-
         Toast.fire({
           icon: 'success',
           title: ` Orden Procesada Correctamente`
@@ -82,40 +81,47 @@ const Checkout = () => {
         clearCart()
         navigate('/')
       } else {
-        const Toast = Swal.mixin({
-          toast: true,
-          background: 'red',
-          color: '#fff',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        if (outOfStock.length > 0) {
+          const Toast = Swal.mixin({
+            toast: true,
+            background: 'red',
+            color: '#fff',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'warning',
+            title: 'Hay productos que estan fuera de stock'
+          })
+        } else {
+          if (!name || !lastName || !phone | !mail) {
+            Swal.fire({
+              icon: 'info',
+              title: 'Algunos de los datos no fue cargado correctamente',
+              text: 'vuelva a intentar',
+            })
           }
-        })
-
-        Toast.fire({
-          icon: 'warning',
-          title: 'Hay productos que estan fuera de stock'
-        })
-
+        }
 
       }
-
-    } catch (error) {
+    }
+    catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Error Inesperado',
-        text: 'Seguir Comprando',
-        footer: navigate('/')
+        text: 'vuelva a intentar',
       })
-    } finally {
-      setLoading(false)
       navigate('/')
     }
-
+    finally {
+      setLoading(false)
+    }
   }
 
   if (loading) {
@@ -128,23 +134,22 @@ const Checkout = () => {
         <div className="title" >Datos Personales</div>
         <div className="subtitle">Completa los datos para terminar la compra.</div>
         <div className="input-container ic1">
-          <input className="input" onChange={e => setName(e.target.value)}
-            type="text" placeholder=" " />
+          <input value={name} onChange={(e) => setName(e.target.value)} type="text" pattern="[a-zA-Z ]{1,35}" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Nombre</label>
         </div>
         <div className="input-container ic2">
-          <input className="input" onChange={e => setLastName(e.target.value)} type="text" placeholder=" " />
+          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Apellido</label>
         </div>
         <div className="input-container ic2">
-          <input className="input" onChange={e => setPhone(e.target.value)} type="text" placeholder=" " />
+          <input value={phone} onChange={(e) => setPhone(e.target.value)} type="number" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Teléfono</label>
         </div>
         <div className="input-container ic2">
-          <input className="input" onChange={e => setMail(e.target.value)} type="text" placeholder=" " />
+          <input value={mail} onChange={(e) => setMail(e.target.value)} type="email" className="input" placeholder=" " required />
           <div className="cut cut-short"></div>
           <label className="placeholder">Correo</label>
         </div>
