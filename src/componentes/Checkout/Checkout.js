@@ -16,6 +16,7 @@ const Checkout = () => {
   const [lastName, setLastName] = useState()
   const [phone, setPhone] = useState()
   const [mail, setMail] = useState()
+  const [checkMail, setCheckMail] = useState()
 
 
   const createOrder = async () => {
@@ -53,7 +54,7 @@ const Checkout = () => {
         }
       })
 
-      if (outOfStock.length === 0 && name && lastName && phone && mail) {
+      if (outOfStock.length === 0 && name && lastName && phone && mail && mail === checkMail) {
         await batch.commit()
 
         const orderRef = collection(db, 'orders')
@@ -80,7 +81,7 @@ const Checkout = () => {
         console.log(orderAdded)
         clearCart()
         navigate('/')
-      } else {
+      } else
         if (outOfStock.length > 0) {
           const Toast = Swal.mixin({
             toast: true,
@@ -99,17 +100,21 @@ const Checkout = () => {
             icon: 'warning',
             title: 'Hay productos que estan fuera de stock'
           })
-        } else {
-          if (!name || !lastName || !phone | !mail) {
+        } else
+          if (!name || !lastName || !phone || !mail || !checkMail) {
             Swal.fire({
               icon: 'info',
               title: 'Algunos de los datos no fue cargado correctamente',
               text: 'vuelva a intentar',
             })
-          }
-        }
-
-      }
+          } else
+            if (mail !== checkMail) {
+              Swal.fire({
+                icon: 'info',
+                title: 'Los mail no coinciden',
+                text: 'vuelva a intentar',
+              })
+            }
     }
     catch (error) {
       Swal.fire({
@@ -150,6 +155,11 @@ const Checkout = () => {
         </div>
         <div className="input-container ic2">
           <input value={mail} onChange={(e) => setMail(e.target.value)} type="email" className="input" placeholder=" " required />
+          <div className="cut cut-short"></div>
+          <label className="placeholder">Correo</label>
+        </div>
+        <div className="input-container ic2">
+          <input value={checkMail} onChange={(e) => setCheckMail(e.target.value)} type="Confirme Email" className="input" placeholder=" " required />
           <div className="cut cut-short"></div>
           <label className="placeholder">Correo</label>
         </div>
