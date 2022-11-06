@@ -78,8 +78,7 @@ const Checkout = () => {
         Toast.fire({
           icon: 'success',
           title: `El id de su orden es: ${orderAdded.id}`
-        })
-        console.log(orderAdded)
+        })      
         clearCart()
         navigate('/')
       } else
