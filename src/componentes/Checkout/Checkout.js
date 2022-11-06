@@ -2,7 +2,7 @@ import './Checkout.css';
 import Swal from 'sweetalert2'
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
-import { addDoc, collection, getDocs, query, where, documentId, writeBatch } from 'firebase/firestore'
+import { addDoc, collection, getDocs, query, where, documentId, writeBatch, Timestamp } from 'firebase/firestore'
 import { db } from '../../services/firebase/index'
 import Loading from '../Loading/Loading';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,8 @@ const Checkout = () => {
           name: name,
           lastName: lastName,
           phone: phone,
-          mail: mail
+          mail: mail,
+          date: Timestamp.fromDate(new Date())
         },
         items: cart,
         total
@@ -76,7 +77,7 @@ const Checkout = () => {
         })
         Toast.fire({
           icon: 'success',
-          title: ` Orden Procesada Correctamente`
+          title: `El id de su orden es: ${orderAdded.id}`
         })
         console.log(orderAdded)
         clearCart()
@@ -139,27 +140,27 @@ const Checkout = () => {
         <div className="title" >Datos Personales</div>
         <div className="subtitle">Completa los datos para terminar la compra.</div>
         <div className="input-container ic1">
-          <input value={name} onChange={(e) => setName(e.target.value)} type="text" pattern="[a-zA-Z ]{1,35}" className="input" placeholder=" " required />
+          <input onChange={(e) => setName(e.target.value)} type="text" pattern="[a-zA-Z ]{1,35}" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Nombre</label>
         </div>
         <div className="input-container ic2">
-          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="input" placeholder=" " required />
+          <input onChange={(e) => setLastName(e.target.value)} type="text" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Apellido</label>
         </div>
         <div className="input-container ic2">
-          <input value={phone} onChange={(e) => setPhone(e.target.value)} type="number" className="input" placeholder=" " required />
+          <input onChange={(e) => setPhone(e.target.value)} type="number" className="input" placeholder=" " required />
           <div className="cut"></div>
           <label className="placeholder">Teléfono</label>
         </div>
         <div className="input-container ic2">
-          <input value={mail} onChange={(e) => setMail(e.target.value)} type="email" className="input" placeholder=" " required />
+          <input onChange={(e) => setMail(e.target.value)} type="email" className="input" placeholder=" " required />
           <div className="cut cut-short"></div>
           <label className="placeholder">Correo</label>
         </div>
         <div className="input-container ic2">
-          <input value={checkMail} onChange={(e) => setCheckMail(e.target.value)} type="Confirme Email" className="input" placeholder=" " required />
+          <input onChange={(e) => setCheckMail(e.target.value)} type="Confirme Email" className="input" placeholder=" " required />
           <div className="cut cut-short"></div>
           <label className="placeholder">Correo</label>
         </div>
