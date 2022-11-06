@@ -111,7 +111,7 @@ const Checkout = () => {
             if (mail !== checkMail) {
               Swal.fire({
                 icon: 'info',
-                title: 'Los mail no coinciden',
+                title: 'Los correos no coinciden',
                 text: 'vuelva a intentar',
               })
             }
